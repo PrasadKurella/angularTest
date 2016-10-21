@@ -1,0 +1,67 @@
+<form [ngFormModel]="form" (ngSubmit)="changePwdSubmit()">
+  <div class="form-group">
+    <label for="currentPassword">Curret Password:</label>
+    <input type="password" class="form-control" id="currentPassword"
+      ngControl="currentPassword"
+      #currentPassword="ngForm"
+      required
+    >
+  </div>
+  <div *ngIf="currentPassword.touched && !currentPassword.valid && currentPassword.errors" class="alert alert-danger">
+      <div *ngIf="currentPassword.errors.required">
+        Current pass word is Required.
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="newPassword">New Password:</label>
+    <input type="password" class="form-control" id="newPassword"
+      ngControl="newPassword"
+      #newPassword="ngForm"
+      required
+      minlength="3"
+    >
+  </div>
+  <div *ngIf="form.errors && form.errors.comparePasswords"
+      [ngClass]="{
+          'alert' : form.errors.comparePasswords,
+          'alert-danger' : form.errors.comparePasswords
+      }"
+  >
+      Password doesnot match.
+  </div>      
+  <div *ngIf="newPassword.touched && !newPassword.valid && newPassword.errors" class="alert alert-danger">
+      <div *ngIf="newPassword.errors.required">
+        New pass word is Required.
+      </div>
+      <div *ngIf="newPassword.errors.shouldBeUnique">
+        New pass word shouldBeUnique.
+      </div>
+      <div *ngIf="newPassword.errors.minlength">
+        New password needs minimum {{newPassword.errors.minlength.requiredLength}} characters and 
+                    actual is {{newPassword.errors.minlength.actualLength}}. 
+      </div>
+      <div *ngIf="newPassword.errors.passwordDoesNotMatch">
+          New pass word and Confirm pass word are not same.
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="confirmPassword">confirm Password:</label>
+    <input type="password" class="form-control" id="confirmPassword"
+      ngControl="confirmPassword"
+      #confirmPassword="ngForm"
+      required
+      minlength="3"
+    >
+  </div>
+  <div *ngIf="confirmPassword.touched && !confirmPassword.valid && confirmPassword.errors" class="alert alert-danger">
+       {{ newPassword.errors | json}}
+      <div *ngIf="confirmPassword.errors.required">
+        Confirm pass word is Required.
+      </div>
+      <div *ngIf="confirmPassword.errors.minlength">
+        New password needs minimum {{confirmPassword.errors.minlength.requiredLength}} characters and 
+                    actual is {{confirmPassword.errors.minlength.actualLength}}. 
+      </div>
+  </div>
+  <button type="submit" class="btn  btn-primary">Submit</button>
+</form>

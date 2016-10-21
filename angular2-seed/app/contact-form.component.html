@@ -1,0 +1,45 @@
+<form #formData="ngForm" (ngSubmit)="onSubmit(formData.form)">
+    <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input id="firstName" ngControl="firstName" #firstName="ngForm" (change)="log(firstName)" 
+            type="text" class="form-control" 
+            required
+            minlength="3">
+        <div 
+            *ngIf="!firstName.valid && firstName.touched"
+            [ngClass] = "{
+                        'alert' : !firstName.valid && firstName.touched,
+                        'alert-danger' : !firstName.valid && firstName.touched
+                    }"
+        >First Name is Required.</div>
+        <div *ngIf="!firstName.valid && firstName.errors && firstName.errors.minlength"
+                [ngClass]="
+                    {
+                        'alert' : !firstName.valid && firstName.touched,
+                        'alert-danger' : !firstName.valid && firstName.touched
+                    }
+                "
+            >
+            First Name needs minimum {{firstName.errors.minlength.requiredLength}} characters and 
+            actual is {{firstName.errors.minlength.actualLength}}. 
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="comments">Comments</label>
+        <textarea 
+            id="comments" 
+            ngControl="comments"
+            #comments="ngForm"
+            cols="30" 
+            rows="3" 
+            class="form-control" required></textarea>
+        <div 
+            *ngIf="!comments.valid && comments.touched"
+            [ngClass] = "{
+                        'alert' : !comments.valid && comments.touched,
+                        'alert-danger' : !comments.valid && comments.touched
+                    }"
+        >Comments is Required.</div>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>

@@ -1,0 +1,57 @@
+<form #formData="ngForm" (ngSubmit)="onSubmit(formData.form)">
+    <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input id="firstName" ngControl="firstName" #firstName="ngForm" (change)="log(firstName)" 
+            type="text" class="form-control" 
+            required
+            minlength="3">
+        <div 
+            *ngIf="!firstName.valid && firstName.touched"
+            [ngClass] = "{
+                        'alert' : !firstName.valid && firstName.touched,
+                        'alert-danger' : !firstName.valid && firstName.touched
+                    }"
+        >First Name is Required.</div>
+        <div *ngIf="!firstName.valid && firstName.errors && firstName.errors.minlength"
+                [ngClass]="
+                    {
+                        'alert' : !firstName.valid && firstName.touched,
+                        'alert-danger' : !firstName.valid && firstName.touched
+                    }
+                "
+            >
+            First Name needs minimum {{firstName.errors.minlength.requiredLength}} characters and 
+            actual is {{firstName.errors.minlength.actualLength}}. 
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Email">Email</label>
+        <input #email="ngForm" ngControl="email" id="Email" type="email" class="form-control" required/>
+    </div>
+    <div *ngIf="!email.valid && email.touched"
+        [ngClass]="{
+            'alert' : !email.valid && email.touched,
+            'alert-danger' : !email.valid && email.touched
+        }"
+    >
+        Please enter email id
+    </div>
+    <div class="form-group">
+        <label for="mailFrequency">Frequency of emails</label>
+        <select ngControl="mailFrequency" #mailFrequency="ngForm"
+            class="form-control" id="mailFrequency" required>
+            <option></option>
+            <option>Daily</option>
+            <option>Weekly</option>
+            <option>Monthly</option>
+        </select>
+    </div>
+    <div *ngIf="!mailFrequency.valid && mailFrequency.touched"
+        [ngClass] = "{
+            'alert' : !mailFrequency.valid && mailFrequency.touched,
+            'alert-danger' :!mailFrequency.valid && mailFrequency.touched
+        }">
+        Please enter valid mail Frequency
+    </div>
+    <button class="btn btn-primary" type="submit"  [disabled]="!formData.valid">Submit</button>
+</form>
