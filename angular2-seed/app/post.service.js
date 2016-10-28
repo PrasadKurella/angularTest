@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/http', 'rxjs/add/operator/map'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/http', 'rxjs/add/operator/map', 'rxjs/add/operator/toPromise'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -20,7 +20,8 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/add/operator/map'], fun
             function (http_1_1) {
                 http_1 = http_1_1;
             },
-            function (_1) {}],
+            function (_1) {},
+            function (_2) {}],
         execute: function() {
             let PostServiceService = class PostServiceService {
                 constructor(_http) {
@@ -30,6 +31,12 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/add/operator/map'], fun
                 getPosts() {
                     return this._http.get(this._URL)
                         .map(e => e.json());
+                }
+                getPostsPromise() {
+                    console.log("i am in getPostsPromise....");
+                    return this._http.get(this._URL)
+                        .map(e => e.json())
+                        .toPromise();
                 }
                 createPost(post) {
                     return this._http.post(this._URL, JSON.stringify(post))

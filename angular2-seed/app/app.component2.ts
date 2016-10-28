@@ -14,13 +14,14 @@ import {HTTP_PROVIDERS} from 'angular2/http';
     selector: 'my-app',
     template: `
     <div class="mainContentsDiv">
-        <h4>My First Angular 2 App</h4><courses></courses>
+        <h4>My First Angular 2 App..</h4>
         <authors></authors>',
         <button class="btn btn-primary" [class.active]="isActive" 
             [style.background]=" isActive ? 'blue' : 'gray'"> Submit</button>      
         <input type="text" [(ngModel)]="twoWayBind"/>  {{ twoWayBind }}
     </div>
     `,
+        // <courses></courses>
         // <div class="mainContentsDiv">
         //     <zippy title="This is Title"> 
         //         <div class="body">This is Prasad Kurella....</div>

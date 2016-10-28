@@ -31,26 +31,37 @@ System.register(['angular2/core', './authors.service', './auto-grow.directive', 
             }],
         execute: function() {
             let AuthorsComponent = class AuthorsComponent {
-                constructor(authorSer, postService) {
+                constructor(authorSer, _postService) {
+                    this._postService = _postService;
                     this.title = 'List of Authors';
+                    this.isLoading = true;
                     this.authors = authorSer.getAuthors();
                     this.authors.push('Venkata Kurella');
-                    console.log(postService.getPosts().subscribe(val => console.log(val)));
-                    postService.createPost({});
+                }
+                ngOnInit() {
+                    console.log(41);
+                    //this._postService.getPosts().subscribe()      for Observable
+                    //this._postService.getPosts().then()           for Promise
+                    console.log(this._postService.getPostsPromise().then(posts => {
+                        this.isLoading = false;
+                        console.log(posts);
+                    }));
+                    this._postService.createPost({ userId: 1, title: "a", body: "body" });
                 }
             };
             AuthorsComponent = __decorate([
                 core_1.Component({
                     selector: 'authors',
                     template: `
-        <h2>Authors</h2>
-        <h3> {{ title }} </h3>
-        <ui>
-            <li *ngFor="#author of authors">
-                {{ author }}
-            </li>
-        </ui> 
+            <div *ngIf="isLoading">Loading data...</div>
         `,
+                    // <h2>Authors</h2>
+                    // <h3> {{ title }} </h3>
+                    // <ui>
+                    //     <li *ngFor="#author of authors">
+                    //         {{ author }}
+                    //     </li>
+                    // </ui> 
                     providers: [authors_service_1.AuthorService, post_service_1.PostServiceService, http_1.HTTP_PROVIDERS],
                     directives: [auto_grow_directive_1.AutoGrowDirective]
                 }), 
