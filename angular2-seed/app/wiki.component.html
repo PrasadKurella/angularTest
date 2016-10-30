@@ -1,0 +1,9 @@
+<h4>{{title}}</h4>
+<p><i>{{fetches}}</i></p>
+<input #term (keyup)="search(term.value)"/>
+<ul>
+  <!--<li *ngFor="let item of items | async">{{item}}</li>-->
+    <li *ngFor="#item of items2">
+        {{ item }}
+    </li>
+</ul>

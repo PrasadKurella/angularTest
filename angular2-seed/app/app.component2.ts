@@ -9,19 +9,19 @@ import {SummaryPipe} from './summary.pipe'
 import {ZippyComponent} from './zippy.component'
 import {AutoGrowDirective} from './auto-grow.directive'
 import {HTTP_PROVIDERS} from 'angular2/http';
+import {WikiComponent} from './wiki.component';
 
 @Component({
     selector: 'my-app',
     template: `
     <div class="mainContentsDiv">
-        <h4>My First Angular 2 App..</h4>
-        <authors></authors>',
+        <my-wiki></my-wiki>
         <button class="btn btn-primary" [class.active]="isActive" 
             [style.background]=" isActive ? 'blue' : 'gray'"> Submit</button>      
         <input type="text" [(ngModel)]="twoWayBind"/>  {{ twoWayBind }}
     </div>
     `,
-        // <courses></courses>
+        // <courses></courses><authors></authors>
         // <div class="mainContentsDiv">
         //     <zippy title="This is Title"> 
         //         <div class="body">This is Prasad Kurella....</div>
@@ -47,11 +47,11 @@ import {HTTP_PROVIDERS} from 'angular2/http';
     pipes : [SummaryPipe],
     styles : [`
                 .mainContentsDiv{
-                margin:10%
+                margin-left:10%
             }`],
     providers : [HTTP_PROVIDERS],
     directives: [CoursesComponent,AuthorsComponent,AutoGrowDirective,FavoriteComponent,LikeComponent,
-            VoteComponent,TweetComponent,ZippyComponent]
+            VoteComponent,TweetComponent,ZippyComponent,WikiComponent]
 })
 export class AppComponent2 {
     post2 = {

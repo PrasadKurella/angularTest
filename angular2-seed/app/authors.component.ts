@@ -38,7 +38,7 @@ export class AuthorsComponent{
         //this._postService.getPosts().then()           for Promise
         console.log(this._postService.getPostsPromise().then(posts => 
             {
-                 this.isLoading=false;
+                this.isLoading=false;
                 console.log(posts);
             }
         ));

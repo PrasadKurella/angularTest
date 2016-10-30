@@ -1,4 +1,4 @@
-System.register(['angular2/core', './courses.Component', './authors.Component', './favorite.component', './like.component', './vote.component', './tweet.component', './summary.pipe', './zippy.component', './auto-grow.directive', 'angular2/http'], function(exports_1, context_1) {
+System.register(['angular2/core', './courses.Component', './authors.Component', './favorite.component', './like.component', './vote.component', './tweet.component', './summary.pipe', './zippy.component', './auto-grow.directive', 'angular2/http', './wiki.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './courses.Component', './authors.Component', 
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, courses_Component_1, authors_Component_1, favorite_component_1, like_component_1, vote_component_1, tweet_component_1, summary_pipe_1, zippy_component_1, auto_grow_directive_1, http_1;
+    var core_1, courses_Component_1, authors_Component_1, favorite_component_1, like_component_1, vote_component_1, tweet_component_1, summary_pipe_1, zippy_component_1, auto_grow_directive_1, http_1, wiki_component_1;
     var AppComponent2;
     return {
         setters:[
@@ -46,6 +46,9 @@ System.register(['angular2/core', './courses.Component', './authors.Component', 
             },
             function (http_1_1) {
                 http_1 = http_1_1;
+            },
+            function (wiki_component_1_1) {
+                wiki_component_1 = wiki_component_1_1;
             }],
         execute: function() {
             let AppComponent2 = class AppComponent2 {
@@ -84,14 +87,13 @@ System.register(['angular2/core', './courses.Component', './authors.Component', 
                     selector: 'my-app',
                     template: `
     <div class="mainContentsDiv">
-        <h4>My First Angular 2 App..</h4>
-        <authors></authors>',
+        <my-wiki></my-wiki>
         <button class="btn btn-primary" [class.active]="isActive" 
             [style.background]=" isActive ? 'blue' : 'gray'"> Submit</button>      
         <input type="text" [(ngModel)]="twoWayBind"/>  {{ twoWayBind }}
     </div>
     `,
-                    // <courses></courses>
+                    // <courses></courses><authors></authors>
                     // <div class="mainContentsDiv">
                     //     <zippy title="This is Title"> 
                     //         <div class="body">This is Prasad Kurella....</div>
@@ -115,11 +117,11 @@ System.register(['angular2/core', './courses.Component', './authors.Component', 
                     pipes: [summary_pipe_1.SummaryPipe],
                     styles: [`
                 .mainContentsDiv{
-                margin:10%
+                margin-left:10%
             }`],
                     providers: [http_1.HTTP_PROVIDERS],
                     directives: [courses_Component_1.CoursesComponent, authors_Component_1.AuthorsComponent, auto_grow_directive_1.AutoGrowDirective, favorite_component_1.FavoriteComponent, like_component_1.LikeComponent,
-                        vote_component_1.VoteComponent, tweet_component_1.TweetComponent, zippy_component_1.ZippyComponent]
+                        vote_component_1.VoteComponent, tweet_component_1.TweetComponent, zippy_component_1.ZippyComponent, wiki_component_1.WikiComponent]
                 }), 
                 __metadata('design:paramtypes', [])
             ], AppComponent2);

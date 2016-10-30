@@ -26,11 +26,24 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/add/operator/map', 'rxj
             let PostServiceService = class PostServiceService {
                 constructor(_http) {
                     this._http = _http;
-                    this._URL = "http://jsonplaceholder.typicode.com/posts";
+                    // private _URL = "http://jsonplaceholder.typicode.com/posts";
+                    this._URL = "http://localhost:8080/10mvc-tests-start/getUsers.json";
                 }
                 getPosts() {
-                    return this._http.get(this._URL)
+                    let headers = new http_1.Headers({ "access-control-request-metod": "POST" });
+                    var options = new http_1.RequestOptions({
+                        headers: headers
+                    });
+                    return this._http.get(this._URL, headers)
                         .map(e => e.json());
+                }
+                getHeaders() {
+                    let headers = new http_1.Headers({ "access-control-request-metod": "GET" });
+                    var options = new http_1.RequestOptions({
+                        headers: headers
+                    });
+                    headers.append('Accept', 'application/json');
+                    return headers;
                 }
                 getPostsPromise() {
                     console.log("i am in getPostsPromise....");
